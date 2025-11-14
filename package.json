@@ -1,41 +1,19 @@
 {
-    "name": "auto-i18n-translation-plugins",
-    "version": "1.1.13",
-    "type": "module",
-    "author": "wenps,xu-code,Winfans,caleb-xu",
-    "scripts": {
-        "dev": "node script/build.js d",
-        "preview": "node script/preview.js",
-        "build": "node script/build.js",
-        "upload": "node script/upload.js",
-        "publish:plugin": "cd vitePluginsAutoI18n && pnpm publish",
-        "publishWp:plugin": "cd webpackPluginsAutoI18n && pnpm publish",
-        "format": "npx prettier . --write",
-        "prepare": "husky install",
-        "preinstall": "npx only-allow pnpm",
-        "postinstall": "pnpm build p=all"
-    },
-    "description": "Web automatic translation, supports custom translators, default support for Youdao Translation and Google Translate, compatible with webpack, vite, rollup and other build and development tools, allowing you to translate with just one click.",
-    "devDependencies": {
-        "@inquirer/prompts": "^4.1.0",
-        "@types/node": "^20.3.3",
-        "@types/shelljs": "^0.8.15",
-        "chalk": "^5.3.0",
-        "husky": "^8.0.0",
-        "prettier": "^3.2.5",
-        "prettier-plugin-sort-imports": "^1.8.6",
-        "pretty-quick": "^4.0.0",
-        "shelljs": "^0.8.5"
-    },
-    "dependencies": {
-        "axios": "^1.6.8",
-        "crypto-js": "^4.2.0"
-    },
-    "engines": {
-        "node": ">=18",
-        "pnpm": "*"
-    },
-    "volta": {
-        "node": "20.19.2"
-    }
+  "name": "i18n-utils",
+  "version": "0.1.0",
+  "private": true,
+  "description": "i18n utilities for extracting and managing translations",
+  "scripts": {
+    "dev": "pnpm --filter extract dev",
+    "build": "pnpm --filter extract build",
+    "test": "pnpm --filter extract test"
+  },
+  "keywords": ["i18n", "vue", "extract", "translation"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
 }
+
