@@ -1,5 +1,7 @@
 import fg from 'fast-glob';
 import { ExtractOptions, ExtractResult } from './types';
+import { parseVueFile } from './parser/vue';
+import { extractFromTemplate } from './parser/template';
 
 /**
  * 提取 i18n 文本
@@ -17,9 +19,30 @@ export async function extract(options: ExtractOptions): Promise<ExtractResult> {
 
   // 2. 提取每个文件
   const allTexts = [];
+  
   for (const file of fileList) {
-    // TODO: 提取文件中的文本
-    console.log(`Processing: ${file}`);
+    try {
+      // 解析 Vue 文件
+      const vueFile = parseVueFile(file);
+      
+      // 提取 template 中的文本
+      if (vueFile.template) {
+        const templateResult = extractFromTemplate(
+          vueFile.template.content,
+          file,
+          vueFile.componentName,
+          namespace,
+          vueFile.template.line
+        );
+        allTexts.push(...templateResult.texts);
+      }
+      
+      // TODO: 提取 script 中的文本
+      
+    } catch (error) {
+      console.warn(`⚠️  处理文件失败: ${file}`);
+      console.warn(error);
+    }
   }
 
   // 3. 返回结果
