@@ -4,8 +4,8 @@
 export interface ExtractOptions {
   /**
    * 包含的文件模式（支持 glob）
-   * @example 'src/**/*.vue'
-   * @example ['src/**/*.vue', 'components/**/*.vue']
+   * @example 'src/views/*.vue'
+   * @example ['src/views/*.vue', 'components/*.vue']
    */
   include: string | string[];
   
@@ -17,7 +17,7 @@ export interface ExtractOptions {
   
   /**
    * 排除的文件模式（可选）
-   * @default ['**/node_modules/**', '**/dist/**', '**/*.d.ts']
+   * @default ['node_modules', 'dist', '*.d.ts']
    */
   exclude?: string[];
   
