@@ -2,6 +2,7 @@ import fg from 'fast-glob';
 import { ExtractOptions, ExtractResult } from './types';
 import { parseVueFile } from './parser/vue';
 import { extractFromTemplate } from './parser/template';
+import { extractFromScript } from './parser/script';
 
 /**
  * 提取 i18n 文本
@@ -37,7 +38,17 @@ export async function extract(options: ExtractOptions): Promise<ExtractResult> {
         allTexts.push(...templateResult.texts);
       }
       
-      // TODO: 提取 script 中的文本
+      // 提取 script 中的文本
+      if (vueFile.script) {
+        const scriptResult = extractFromScript(
+          vueFile.script.content,
+          file,
+          vueFile.componentName,
+          namespace,
+          vueFile.script.line
+        );
+        allTexts.push(...scriptResult.texts);
+      }
       
     } catch (error) {
       console.warn(`⚠️  处理文件失败: ${file}`);

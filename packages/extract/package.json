@@ -11,7 +11,9 @@
     "test:quick": "tsx ./test/quick-test.ts",
     "test:utils": "tsx ./test/utils-test.ts",
     "test:vue": "tsx ./test/vue-parser-test.ts",
-    "test:real": "tsx ./test/real-project-test.ts"
+    "test:real": "tsx ./test/real-project-test.ts",
+    "test:edge": "tsx ./test/edge-cases-test.ts",
+    "test:script": "tsx ./test/script-test.ts"
   },
   "dependencies": {
     "@vue/compiler-sfc": "^3.4.0",
