@@ -3,6 +3,8 @@ import { ExtractOptions, ExtractResult } from './types';
 import { parseVueFile } from './parser/vue';
 import { extractFromTemplate } from './parser/template';
 import { extractFromScript } from './parser/script';
+import { deduplicate, printDedupReport } from './utils/dedup';
+import { outputToJson, generateLocaleFiles, generateReport } from './utils/output';
 
 /**
  * 提取 i18n 文本
@@ -56,12 +58,15 @@ export async function extract(options: ExtractOptions): Promise<ExtractResult> {
     }
   }
 
-  // 3. 返回结果
+  // 3. 去重
+  const dedupResult = deduplicate(allTexts);
+
+  // 4. 返回结果
   return {
     namespace,
-    texts: allTexts,
+    texts: dedupResult.texts,
     stats: {
-      total: allTexts.length,
+      total: dedupResult.texts.length,
       files: fileList.length,
     },
   };
@@ -85,6 +90,10 @@ async function resolveFiles(
 
   return fileList;
 }
+
+// 导出工具函数
+export { outputToJson, generateLocaleFiles, generateReport } from './utils/output';
+export { deduplicate, printDedupReport } from './utils/dedup';
 
 // 导出类型
 export * from './types';

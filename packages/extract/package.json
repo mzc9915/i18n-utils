@@ -7,13 +7,14 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
-    "test": "node ./test/quick-test.js",
+    "test": "tsx ./test/full-test.ts",
     "test:quick": "tsx ./test/quick-test.ts",
     "test:utils": "tsx ./test/utils-test.ts",
     "test:vue": "tsx ./test/vue-parser-test.ts",
     "test:real": "tsx ./test/real-project-test.ts",
     "test:edge": "tsx ./test/edge-cases-test.ts",
-    "test:script": "tsx ./test/script-test.ts"
+    "test:script": "tsx ./test/script-test.ts",
+    "test:full": "tsx ./test/full-test.ts"
   },
   "dependencies": {
     "@vue/compiler-sfc": "^3.4.0",
